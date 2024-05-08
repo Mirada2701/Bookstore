@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace data_access.Entities
 {
-    public class Book
+    public class WriteOffBooks
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -22,11 +22,5 @@ namespace data_access.Entities
         public decimal Sale_Price { get; set; }
         public bool IsContinuation { get; set; }
         public ICollection<Customer> Customers { get; set; }
-        public override string ToString()
-        {
-            return $"\t\t{Name}\nAuthor : {Author?.Name} {Author?.Last_Name} {Author?.Surname}\nPublisher : {Publisher?.Name}\nCount pages : {Count_Pages}\nGenre : {Genre?.Name}\nPublication Year : " +
-                $"{Publication_Year.ToShortDateString()}\nPrice : {Sale_Price}\nIs Continuation : {IsContinuation}\n\n\n";
-        }
-
     }
 }

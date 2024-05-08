@@ -12,5 +12,10 @@ namespace data_access.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public ICollection<Book> Books { get; set; }
+        public ICollection<WriteOffBooks> WriteOffBooks { get; set; }
+        public override string ToString()
+        {
+            return $"Id : {Id} Name : {Name} Description : {Description}";
+        }
     }
 }

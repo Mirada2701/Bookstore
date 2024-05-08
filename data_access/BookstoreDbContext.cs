@@ -21,6 +21,7 @@ namespace data_access
         public DbSet<Book> Books { get; set; }
         public DbSet<Credential> Credentials { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<WriteOffBooks> WriteOffBooks { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -50,11 +51,16 @@ namespace data_access
             modelBuilder.Entity<Customer>().Property(a => a.City).IsRequired().HasMaxLength(100);
             modelBuilder.Entity<Credential>().Property(a => a.Login).IsRequired().HasMaxLength(100);
             modelBuilder.Entity<Credential>().Property(a => a.Password).IsRequired().HasMaxLength(100);
+            modelBuilder.Entity<WriteOffBooks>().Property(b => b.Name).IsRequired().HasMaxLength(100);
 
             modelBuilder.Entity<Book>().HasOne(b => b.Author).WithMany(a => a.Books).HasForeignKey(b => b.AuthorId);
             modelBuilder.Entity<Book>().HasOne(b => b.Publisher).WithMany(a => a.Books).HasForeignKey(b => b.PublisherId);
             modelBuilder.Entity<Book>().HasOne(b => b.Genre).WithMany(a => a.Books).HasForeignKey(b => b.GenreId);
             modelBuilder.Entity<Book>().HasMany(b => b.Customers).WithMany(a => a.Books);
+            modelBuilder.Entity<WriteOffBooks>().HasOne(b => b.Author).WithMany(a => a.WriteOffBooks).HasForeignKey(b => b.AuthorId);
+            modelBuilder.Entity<WriteOffBooks>().HasOne(b => b.Publisher).WithMany(a => a.WriteOffBooks).HasForeignKey(b => b.PublisherId);
+            modelBuilder.Entity<WriteOffBooks>().HasOne(b => b.Genre).WithMany(a => a.WriteOffBooks).HasForeignKey(b => b.GenreId);
+            modelBuilder.Entity<WriteOffBooks>().HasMany(b => b.Customers).WithMany(a => a.WriteOffBooks);
             modelBuilder.Entity<Customer>().HasOne(c => c.Credential)
                 .WithOne(c => c.Customer).HasForeignKey<Customer>(c => c.Id);
 

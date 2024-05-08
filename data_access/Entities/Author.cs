@@ -14,5 +14,10 @@ namespace data_access.Entities
         public string Surname { get; set; }
         public DateTime Birthdate { get; set; }
         public ICollection<Book> Books { get; set; }
+        public ICollection<WriteOffBooks> WriteOffBooks { get; set; }
+        public override string ToString()
+        {
+            return $"Fullname : {Last_Name} {Name} {Surname}\nBirthdate : {Birthdate.ToShortDateString()}";
+        }
     }
 }

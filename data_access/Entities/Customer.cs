@@ -13,7 +13,12 @@ namespace data_access.Entities
         public string Address { get; set; }
         public string City { get; set; }
         public ICollection<Book> Books { get; set; }
+        public ICollection<WriteOffBooks> WriteOffBooks { get; set; }
         public Credential Credential { get; set; }
+        public override string ToString()
+        {
+            return $"{FullName} {Address} {City}";
+        }
 
     }
 }

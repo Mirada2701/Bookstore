@@ -12,5 +12,6 @@ namespace data_access.Entities
         public string Name { get; set; }
         public string Address { get; set; }
         public ICollection<Book> Books { get; set; }
+        public ICollection<WriteOffBooks> WriteOffBooks { get; set; }
     }
 }
